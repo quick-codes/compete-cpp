@@ -17,9 +17,8 @@ class TreeNode {
   TreeNode();
   TreeNode(int x);
   TreeNode(int x, TreeNode *left, TreeNode *right);
+  friend ostream &operator<<(ostream &output_stream, TreeNode *root);
 };
-
-ostream &operator<<(ostream &output_stream, TreeNode *root);
 
 TreeNode *vector_to_binary_tree(const vector<Integer> &nodes);
 
