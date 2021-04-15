@@ -1,4 +1,5 @@
 #include "integer/Integer.h"
+#include "listnode/ListNode.h"
 #include "treenode/TreeNode.h"
 #include <cassert>
 #include <iostream>
@@ -10,35 +11,6 @@
 #include <utility>
 #include <vector>
 using namespace std;
-
-struct ListNode {
-  int val;
-  ListNode *next;
-  ListNode() : val(0), next(nullptr) {}
-  ListNode(int x) : val(x), next(nullptr) {}// NOLINT(google-explicit-constructor)
-  ListNode(int x, ListNode *next) : val(x), next(next) {}
-};
-
-ListNode *vector_to_linked_list(const vector<int> &nums) {
-  ListNode *head = nullptr;
-  for (const auto &num : vector<int>(nums.rbegin(), nums.rend())) {
-	head = new ListNode(num, head);
-  }
-  return head;
-}
-
-//void print_linked_list(ListNode *head) {
-//  cout << "[";
-//  if (head) {
-//	cout << head->val;
-//	head = head->next;
-//  }
-//  while (head) {
-//	cout << ", " << head->val;
-//	head = head->next;
-//  }
-//  cout << "]";
-//}
 
 class RandomNode {
  public:
@@ -135,57 +107,6 @@ class MultilevelNode {
 //  return all_nodes.front();
 //}
 
-//void print_tree(TreeNode *root) {
-//  vector<TreeNode *> complete_tree;
-//  bool is_next_available = root;
-//  complete_tree.push_back(root);
-//
-//  unsigned long long num_of_parents = 1;
-//  while (is_next_available) {
-//	is_next_available = false;
-//	for (unsigned long long parent = num_of_parents - 1; parent < (2 * num_of_parents - 1); ++parent) {
-//	  if (complete_tree[parent]) {
-//		is_next_available = is_next_available or complete_tree[parent]->left or complete_tree[parent]->right;
-//		complete_tree.push_back(complete_tree[parent]->left);
-//		complete_tree.push_back(complete_tree[parent]->right);
-//	  } else {
-//		complete_tree.push_back(nullptr);
-//		complete_tree.push_back(nullptr);
-//	  }
-//	}
-//	num_of_parents *= 2;
-//  }
-//
-//  cout << "[";
-//  cout << complete_tree[0];
-//  for (int i = 1; i < complete_tree.size() - num_of_parents; ++i) {
-//	cout << ", ";
-//	cout << complete_tree[i];
-//  }
-//  cout << "]";
-//}
-//
-//void print_vector(vector<char> nums) {
-//  cout << "[";
-//  if (!nums.empty()) cout << nums[0];
-//  for (int i = 1; i < nums.size(); ++i) cout << ", " << nums[i];
-//  cout << "]";
-//}
-//
-//void print_vector(vector<Integer> nums) {
-//  cout << "[";
-//  if (!nums.empty()) cout << nums[0];
-//  for (int i = 1; i < nums.size(); ++i) cout << ", " << nums[i];
-//  cout << "]";
-//}
-//
-//void print_vector(vector<string> strings) {
-//  cout << "[";
-//  if (!strings.empty()) cout << strings[0];
-//  for (int i = 1; i < strings.size(); ++i) cout << ", " << strings[i];
-//  cout << "]";
-//}
-
 template<class T>
 ostream &operator<<(ostream &output_stream, const vector<T> &nums) {
   output_stream << "[";
@@ -200,13 +121,13 @@ ostream &operator<<(ostream &output_stream, const vector<T> &nums) {
 }
 
 int main() {
-  const vector<vector<Integer>> inputs = {
-	  {1, 2, 3, 4, 5, null, 6, 7, null, null, null, null, 8},
-	  {6, 7, 8, 2, 7, 1, 3, 9, null, 1, 4, null, null, null, 5},
+  const vector<vector<int>> inputs = {
+	  {1, 4, 3, 2, 5, 2},
+	  {1, 2},
   };
   for (const auto &input : inputs) {
-	TreeNode *root = vector_to_binary_tree(input);
-	cout << "root = " << root << endl;
+	auto head = vector_to_linked_list(input);
+	cout << "list = " << head << endl;
   }
   return 0;
 }
